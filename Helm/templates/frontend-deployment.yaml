@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "my-chart.fullname" . }}-frontend
+  name: frontend
   labels:
-    app: frontend
+    app: app-frontend
 spec:
   replicas: {{ .Values.frontend.replicas }}
   selector:
@@ -17,9 +17,6 @@ spec:
       containers:
         - name: frontend
           image: {{ .Values.frontend.image }}
-          env:
-            - name: VITE_API_PATH
-              value: {{ .Values.frontend.env.VITE_API_PATH }}
+          imagePullPolicy: Always
           ports:
             - containerPort: {{ .Values.frontend.port }}
-

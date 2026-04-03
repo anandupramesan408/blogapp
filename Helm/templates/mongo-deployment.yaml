@@ -1,22 +1,32 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "my-chart.fullname" . }}
-  labels:
-    database: mongodb
+  name: mongo
+  labels: 
+    app: mongo
 spec:
   replicas: {{ .Values.mongo.replicas }}
   selector:
     matchLabels:
-      database: mongodb
+      app: mongo
   template:
     metadata:
       labels:
-        database: mongodb
+        app: mongo
     spec:
       containers:
-        - name: mongodb
-          image: {{ .Values.mongo.image }}
-          ports:
-            - containerPort: {{ .Values.mongo.port }}
-
+      - name: mongo
+        image: {{ .Values.mongo.image }}
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: {{ .Values.mongo.port }}
+        volumeMounts:
+          - name: mongo-storage
+            mountPath: /data/db
+      volumes:
+        - name: mongo-storage
+          persistentVolumeClaim:
+            claimName: mongo-pvc
