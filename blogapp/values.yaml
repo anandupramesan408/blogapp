@@ -12,6 +12,6 @@ frontend:
   env:
     VITE_API_PATH: "http://backend:5000"
 mongo:
-  image: mongo
+  image: mongo:4.4
   replicas: 1
   port: 27017
