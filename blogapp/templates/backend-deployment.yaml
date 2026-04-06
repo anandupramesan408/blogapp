@@ -3,7 +3,7 @@ apiVersion: apps/v1
 metadata: 
   name: backend
   labels:
-    app: app-backend
+    app: backend
 spec:
   replicas: {{ .Values.backend.replicas }}
   selector:

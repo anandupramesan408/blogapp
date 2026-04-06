@@ -9,4 +9,4 @@ spec:
     protocol: TCP
   type: NodePort
   selector: 
-    app: app-frontend
+    app: frontend
