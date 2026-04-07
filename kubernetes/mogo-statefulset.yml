@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Statefulset
+metadata:
+  name: mongo
+  label:  blogapp
+spec:
+  serviceName: mongo-service
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mongo
+  template:
+    metadata:
+      labels:
+        app: mongo
+    spec:
+      containers:
+        - name: mongo
+          image: mongo:4.4
+          resources:
+            limits: 
+              memory: "128mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 27017
+          volumeMounts:
+            - name: mongo-storage
+              mountPath: /data/db
+      volume:
+        - name: mongo-data
+          persistenVolumeClaim:
+            claimName: mongo-pvc
+
