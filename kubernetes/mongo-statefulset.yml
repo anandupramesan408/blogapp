@@ -6,7 +6,7 @@ metadata:
     app: blogapp
 spec:
   serviceName: mongo-service
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: mongo
