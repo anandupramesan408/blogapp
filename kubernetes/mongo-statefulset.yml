@@ -2,7 +2,8 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: mongo
-  label:  blogapp
+  labels: 
+    app: blogapp
 spec:
   serviceName: mongo-service
   replicas: 2
@@ -19,15 +20,19 @@ spec:
           image: mongo:4.4
           resources:
             limits: 
-              memory: "128mi"
+              memory: "128Mi"
               cpu: "500m"
           ports:
             - containerPort: 27017
           volumeMounts:
             - name: mongo-storage
               mountPath: /data/db
-      volume:
-        - name: mongo-data
-          persistenVolumeClaim:
-            claimName: mongo-pvc
-
+  volumeClaimTemplates:
+    - metadata:
+        name: mongo-storage
+      spec: 
+        accessModes: ["ReadWriteOnce"]
+        storageClassName: manual
+        resources:
+          requests:
+            storage: 5Gi
