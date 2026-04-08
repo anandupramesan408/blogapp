@@ -4,7 +4,13 @@ metadata:
   name: prometheus
 rules:
   - apiGroups: [""]
-    resources: ["nodes", "pods", "services", "endpoints"]
-    verbs: ["get", "list", "watch"]   # read-only access
+    resources:
+      - nodes
+      - nodes/proxy   # 🔥 THIS IS THE MISSING PIECE
+      - pods
+      - services
+      - endpoints
+    verbs: ["get", "list", "watch"]
+
   - nonResourceURLs: ["/metrics"]
     verbs: ["get"]
