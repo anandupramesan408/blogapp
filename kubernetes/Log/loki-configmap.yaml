@@ -8,6 +8,8 @@ data:
     auth_enabled: false
     server:
       http_listen_port: 3100
+    common:
+      path_prefix: /loki          # add this — sets base path for all storage
     ingester:
       lifecycler:
         ring:
@@ -27,11 +29,14 @@ data:
             period: 24h
     storage_config:
       boltdb_shipper:
-        active_index_directory: /loki/index
-        cache_location: /loki/cache
+        active_index_directory: /loki/index      # explicit full path
+        cache_location: /loki/cache              # explicit full path
         shared_store: filesystem
       filesystem:
-        directory: /loki/chunks
+        directory: /loki/chunks                  # explicit full path
+    compactor:
+      working_directory: /loki/compactor         # add this — was missing!
+      shared_store: filesystem
     limits_config:
       enforce_metric_name: false
       reject_old_samples: true
