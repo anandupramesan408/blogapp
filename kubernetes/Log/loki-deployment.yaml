@@ -23,7 +23,7 @@ spec:
           resources:
             limits:
               memory: "256Mi"
-              cpu: "500m"
+              cpu: "128m"
           volumeMounts:
             - name: loki-config
               mountPath: /etc/loki/loki.yaml
