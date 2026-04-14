@@ -68,4 +68,4 @@ jobs:
           docker push ${{ secrets.DOCKERHUBUSER }}/blogapp_frontend:${TAG}
       - name: Update deployment image
         run: |
-          sed -i "s|image: .*blogapp_backend:.*|image: ${{ secrets.DOCKERHUBUSER }}/blogapp_backend:${TAG}|g" kubernetes/backend-deployment.yaml
+          cat kubernetes/backend-deployment.yaml
