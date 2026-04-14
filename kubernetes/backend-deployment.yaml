@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: anandu408/mernapp-backend:latest
+          image: anandu408/blogapp_backend:latest
           env:
             - name: MONGODB_URI
               value: mongodb://mongo-service:27017/wanderlust
