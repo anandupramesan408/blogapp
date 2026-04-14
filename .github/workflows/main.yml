@@ -29,7 +29,7 @@ jobs:
       - name: List images
         run: docker images
 
-        
+
       - name: Scan backend
         uses: aquasecurity/trivy-action@master
         with:
@@ -41,4 +41,28 @@ jobs:
       - name: Push backend
         run: |
           docker push ${{ secrets.DOCKERHUBUSER }}/blogapp_backend:${TAG}
-        
+
+        ##################
+        #-frontend build---#
+        ##################
+
+
+      - name: build frontend
+        run: |
+          docker build -t ${{ secrets.DOCKERHUBUSER }}/blogapp_frontend:${TAG} ./frontend
+
+      - name: List images
+        run: docker images
+
+
+      - name: Scan backend
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: ${{ secrets.DOCKERHUBUSER }}/blogapp_frontend:${{ env.TAG }}
+          severity: CRITICAL
+          ignore-unfixed: true
+          exit-code: 1
+          vuln-type: os
+      - name: Push frontend
+        run: |
+          docker push ${{ secrets.DOCKERHUBUSER }}/blogapp_frontend:${TAG}  
