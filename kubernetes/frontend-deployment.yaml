@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: anandu408/mernapp-frontend:latest
+          image: anandu408/blogapp_frontend:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 80

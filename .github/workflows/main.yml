@@ -69,6 +69,7 @@ jobs:
       - name: Update deployment image
         run: |
           sed -i "s|image: .*blogapp_backend:.*|image: ${{ secrets.DOCKERHUBUSER }}/blogapp_backend:${TAG}|g" kubernetes/backend-deployment.yaml
+          sed -i "s|image: .*blogapp_frontend:.*|image: ${{ secrets.DOCKERHUBUSER }}/blogapp_frontend:${TAG}|g" kubernetes/frontend-deployment.yaml
       - name: Commit and push updated manifest
         run: |
           git config user.name "github-actions"
