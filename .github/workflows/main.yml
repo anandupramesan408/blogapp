@@ -26,7 +26,7 @@ jobs:
         run: |
           docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/blogapp_backend:${TAG} ./backend
       - name: Scan backend
-        uses: aquasecurity/trivy-action@0.20.0
+        uses: aquasecurity/trivy-action@0.33.1
         with:
           image-ref: ${{ secrets.DOCKERHUB_USERNAME }}/blogapp-backend:${TAG}
           exit-code: 1
