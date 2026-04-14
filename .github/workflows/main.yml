@@ -25,6 +25,11 @@ jobs:
       - name: build backend
         run: |
           docker build -t ${{ secrets.DOCKERHUBUSER }}/blogapp_backend:${TAG} ./backend
+
+      - name: List images
+        run: docker images
+
+        
       - name: Scan backend
         uses: aquasecurity/trivy-action@master
         with:
@@ -32,6 +37,7 @@ jobs:
           severity: CRITICAL
           ignore-unfixed: true
           exit-code: 1
+          vuln-type: os
       - name: Push backend
         run: |
           docker push ${{ secrets.DOCKERHUBUSER }}/blogapp_backend:${TAG}
