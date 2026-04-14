@@ -1,7 +1,8 @@
 FROM node:21
 WORKDIR /app
+COPY package*.json ./
+RUN npm ci --omit=dev
 COPY . .
-RUN npm install
-COPY  .env.docker .env
+#COPY  .env.docker .env
 EXPOSE 5000
 CMD [ "npm","start" ]
