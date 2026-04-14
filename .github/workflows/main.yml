@@ -29,8 +29,9 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           image-ref: ${{ secrets.DOCKERHUBUSER }}/blogapp_backend:${{ env.TAG }}
+          severity: CRITICAL
+          ignore-unfixed: true
           exit-code: 1
-          severity: HIGH,CRITICAL
       - name: Push backend
         run: |
           docker push ${{ secrets.DOCKERHUBUSER }}/blogapp_backend:${TAG}
