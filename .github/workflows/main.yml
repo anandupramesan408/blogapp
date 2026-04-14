@@ -24,14 +24,14 @@ jobs:
         ##################
       - name: build backend
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/blogapp_backend:${TAG} ./backend
+          docker build -t ${{ secrets.DOCKERHUBUSER }}/blogapp_backend:${TAG} ./backend
       - name: Scan backend
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: ${{ secrets.DOCKERHUB_USERNAME }}/blogapp-backend:${TAG}
+          image-ref: ${{ secrets.DOCKERHUBUSER }}/blogapp-backend:${TAG}
           exit-code: 1
           severity: HIGH,CRITICAL
       - name: Push backend
         run: |
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/backend:${TAG}
+          docker push ${{ secrets.DOCKERHUBUSER }}/blogapp_backend:${TAG}
         
