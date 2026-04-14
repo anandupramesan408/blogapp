@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: anandu408/blogapp_backend:197b05a
+          image: anandu408/blogapp_backend:d743962
           env:
             - name: MONGODB_URI
               value: mongodb://mongo-service:27017/wanderlust
