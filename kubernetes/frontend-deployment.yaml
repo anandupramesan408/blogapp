@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: anandu408/blogapp_frontend:afd4922
+          image: anandu408/blogapp_frontend:0d45451
           imagePullPolicy: Always
           ports:
             - containerPort: 80
