@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend
+  annotations: 
+    kubernetes.io/change-cause: "frontend updated to 0d45451"
   labels:
     app: app-frontend
 spec:

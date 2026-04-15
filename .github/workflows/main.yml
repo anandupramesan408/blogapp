@@ -70,6 +70,14 @@ jobs:
         run: |
           sed -i "s|image: .*blogapp_backend:.*|image: ${{ secrets.DOCKERHUBUSER }}/blogapp_backend:${TAG}|g" kubernetes/backend-deployment.yaml
           sed -i "s|image: .*blogapp_frontend:.*|image: ${{ secrets.DOCKERHUBUSER }}/blogapp_frontend:${TAG}|g" kubernetes/frontend-deployment.yaml
+
+          ##################################
+          # Update change-cause dynamically
+          ##################################
+          
+          sed -i "s|kubernetes.io/change-cause:.*|kubernetes.io/change-cause: \"backend updated to ${TAG}\"|g" kubernetes/backend-deployment.yaml
+          sed -i "s|kubernetes.io/change-cause:.*|kubernetes.io/change-cause: \"frontend updated to ${TAG}\"|g" kubernetes/frontend-deployment.yaml
+      
       - name: Commit and push updated manifest
         run: |
           git config user.name "github-actions"
