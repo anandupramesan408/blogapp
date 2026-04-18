@@ -1,12 +1,12 @@
 backend:
-  image: anandu408/blogapp_backend:5359940
+  image: anandu408/blogapp_backend:1a3acf8
   replicas: 2
   port: 5000
   env:
     MONGODB_URI: "mongodb://mongo-service:27017/wanderlust"
 
 frontend:
-  image: anandu408/blogapp_frontend:5359940
+  image: anandu408/blogapp_frontend:1a3acf8
   replicas: 2
   port: 80
   env:
