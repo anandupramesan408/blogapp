@@ -98,6 +98,7 @@ jobs:
           git config user.email "github-actions@github.com"
           git add kubernetes/backend-deployment.yaml
           git add kubernetes/frontend-deployment.yaml
+          git add blogapp/values.yaml 
           git commit -m "Update backend image to ${TAG}"
           git push
         env:
