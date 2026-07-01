@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: frontend
   annotations: 
-    kubernetes.io/change-cause: "frontend updated to c23bd0e"
+    kubernetes.io/change-cause: "frontend updated to 1a588fb"
   labels:
     app: app-frontend
 spec:
@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: anandu408/blogapp_frontend:c23bd0e
+          image: anandu408/blogapp_frontend:1a588fb
           imagePullPolicy: Always
           ports:
             - containerPort: 80

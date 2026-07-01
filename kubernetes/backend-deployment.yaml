@@ -3,7 +3,7 @@ apiVersion: apps/v1
 metadata: 
   name: backend
   annotations: 
-    kubernetes.io/change-cause: "backend updated to c23bd0e"
+    kubernetes.io/change-cause: "backend updated to 1a588fb"
   labels:
     app: app-backend
 spec:
@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: anandu408/blogapp_backend:c23bd0e
+          image: anandu408/blogapp_backend:1a588fb
           env:
             - name: MONGODB_URI
               value: mongodb://mongo-service:27017/wanderlust
